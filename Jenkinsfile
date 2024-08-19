@@ -31,10 +31,10 @@ pipeline {
     }
 
     post {
-        //always {
+        always {
             // Clean up the workspace after the build
-            //cleanWs()
-        //}
+            cleanWs()
+        }
         success {
             echo 'Build completed successfully!'
         }
