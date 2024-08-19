@@ -1,11 +1,11 @@
 pipeline {
-    agent any
-    //agent {
-      //  docker {
-        //    image '61bbb301b0da' // Replace with your actual Docker image name and tag
-          //  args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket if needed
-        //}
-    
+    //agent any
+    agent {
+        docker {
+            image '61bbb301b0da' // Replace with your actual Docker image name and tag
+            args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket if needed
+        }
+    }
     environment {
         ANDROID_HOME = '/Users/apple/Library/Android/sdk' // Replace with the actual path to your Android SDK
         GRADLE_USER_HOME='/Users/apple/softwares/gradle-7.5/bin'
