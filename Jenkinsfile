@@ -1,20 +1,17 @@
 pipeline {
-    //agent any
+    agent any
     //agent {
       //  docker {
         //    image '61bbb301b0da' // Replace with your actual Docker image name and tag
           //  args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket if needed
         //}
-    agent any
-    environment {
-        DOCKER_HOME = "/usr/local/bin" // Set this to your Docker installation path
-    }
     
     environment {
         ANDROID_HOME = '/Users/apple/Library/Android/sdk' // Replace with the actual path to your Android SDK
         GRADLE_USER_HOME='/Users/apple/softwares/gradle-7.5/bin'
         //PATH = "${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${env.PATH}"
         PATH = "/opt/homebrew/opt/openjdk@11/bin:/Users/apple/softwares/gradle-7.5/bin:/Users/apple/Library/Android/sdk/build-tools/33.0.3:$PATH"
+        DOCKER_HOME = "/usr/local/bin" // Set this to your Docker installation path
     }
     stages {
         stage('Clone Repository') {
