@@ -3,7 +3,7 @@ pipeline {
     agent {
         docker {
             image 'satham:v2' // Replace with your actual Docker image name and tag
-            args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket if needed
+           // args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket if needed
         }
     }
     environment {
