@@ -29,11 +29,6 @@ pipeline {
         }
     }
     post {
-        always {
-            node {
-                cleanWs() // Ensure this is inside a node block
-            }
-        }
         success {
             echo 'Build completed successfully!'
         }
