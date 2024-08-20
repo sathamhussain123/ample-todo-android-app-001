@@ -8,7 +8,7 @@ pipeline {
 //  args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket if needed
       }
               }      
-            }
+            
             environment {
                 ANDROID_HOME = '/Users/apple/Library/Android/sdk'
                 GRADLE_USER_HOME='/Users/apple/softwares/gradle-7.5/bin'
