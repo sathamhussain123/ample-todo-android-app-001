@@ -2,10 +2,12 @@ pipeline {
     agent none
     stages {
         stage('Build') {
-            agent {
-                node {
-                    label 'docker-node' // Replace with your actual node label
-                }
+              agent {
+               docker {
+           image 'satham:v2' // Replace with your actual Docker image name and tag
+//  args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket if needed
+      }
+              }      
             }
             environment {
                 ANDROID_HOME = '/Users/apple/Library/Android/sdk'
