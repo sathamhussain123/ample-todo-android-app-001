@@ -1,18 +1,18 @@
 pipeline {
-    agent {
-        docker {
-            image 'satham:v2'
-           
-        }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
-                sh 'gradle build'
+                script {
+                    docker.image('satham:v2').inside {
+                        sh 'gradle build'
+                    }
+                }
             }
         }
     }
 }
+
 
 // ================================
 // pipeline {
