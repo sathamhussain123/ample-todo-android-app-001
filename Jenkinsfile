@@ -1,19 +1,18 @@
 pipeline {
     agent {
         docker {
-            image 'satham:v2'
+            image 'docker:latest'
             args '-v /var/jenkins_home/workspace:/workspace -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages {
         stage('Build') {
             steps {
-                sh 'gradle build'
+                sh 'docker run -v /workspace:/app satham:v2 gradle build'
             }
         }
     }
 }
-
 
 
 // ================================
