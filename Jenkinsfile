@@ -1,14 +1,14 @@
 pipeline {
     agent {
         docker {
-            image 'docker:dind'
-            args '-v /var/jenkins_home/workspace:/workspace -v /var/run/docker.sock:/var/run/docker.sock --privileged'
+            image 'satham:v2'
+            volumes CWD:/workspace
         }
     }
     stages {
         stage('Build') {
             steps {
-                sh 'docker run -v /workspace:/app satham:v2 gradle build'
+                sh 'gradle build'
             }
         }
     }
