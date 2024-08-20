@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'satham:v2'
-            volumes CWD:/workspace
+            volumes CWD:/app // Use a specific mount point
         }
     }
     stages {
@@ -13,7 +13,6 @@ pipeline {
         }
     }
 }
-
 
 // ================================
 // pipeline {
