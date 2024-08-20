@@ -1,44 +1,63 @@
 pipeline {
-    agent none
-    stages {
-        stage('Build') {
-              agent {
-               docker {
-             image 'satham:v2' // Replace with your actual Docker image name and tag
-                    reuseNode true // Reuse the node Jenkins is running on
-      }
-              }      
-            
-            environment {
-                ANDROID_HOME = '/Users/apple/Library/Android/sdk'
-                GRADLE_USER_HOME='/Users/apple/softwares/gradle-7.5/bin'
-                PATH = "/opt/homebrew/opt/openjdk@11/bin:/Users/apple/softwares/gradle-7.5/bin:/Users/apple/Library/Android/sdk/build-tools/33.0.3:$PATH"
-            }
-            steps {
-                script {
-                    docker.image('61bbb301b0da').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
-                        // Clone the repository
-                        git branch: 'main', url: 'https://github.com/sathamhussain123/ample-todo-android-app-001.git'
-
-                        // Set up environment
-                        sh 'chmod +x ./gradlew'
-
-                        // Build the Android app
-                        sh './gradlew build'
-                    }
-                }
-            }
+    agent {
+        docker {
+            image 'satham:v2'
+            args '-v /var/jenkins_home/workspace:/workspace'
         }
     }
-    post {
-        success {
-            echo 'Build completed successfully!'
-        }
-        failure {
-            echo 'Build failed!'
+    stages {
+        stage('Build') {
+            steps {
+                sh 'gradle build'
+            }
         }
     }
 }
+
+
+
+// ================================
+// pipeline {
+//     agent none
+//     stages {
+//         stage('Build') {
+//               agent {
+//                docker {
+//              image 'satham:v2' // Replace with your actual Docker image name and tag
+//                     reuseNode true // Reuse the node Jenkins is running on
+//       }
+//               }      
+            
+//             environment {
+//                 ANDROID_HOME = '/Users/apple/Library/Android/sdk'
+//                 GRADLE_USER_HOME='/Users/apple/softwares/gradle-7.5/bin'
+//                 PATH = "/opt/homebrew/opt/openjdk@11/bin:/Users/apple/softwares/gradle-7.5/bin:/Users/apple/Library/Android/sdk/build-tools/33.0.3:$PATH"
+//             }
+//             steps {
+//                 script {
+//                     docker.image('61bbb301b0da').inside('-v /var/run/docker.sock:/var/run/docker.sock') {
+//                         // Clone the repository
+//                         git branch: 'main', url: 'https://github.com/sathamhussain123/ample-todo-android-app-001.git'
+
+//                         // Set up environment
+//                         sh 'chmod +x ./gradlew'
+
+//                         // Build the Android app
+//                         sh './gradlew build'
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     post {
+//         success {
+//             echo 'Build completed successfully!'
+//         }
+//         failure {
+//             echo 'Build failed!'
+//         }
+//     }
+// }
 
 
 
