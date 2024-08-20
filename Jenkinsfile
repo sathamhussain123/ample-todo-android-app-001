@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'satham:v2'
-            args '-v /var/jenkins_home/workspace:/workspace'
+            args '-v /var/jenkins_home/workspace:/workspace -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages {
